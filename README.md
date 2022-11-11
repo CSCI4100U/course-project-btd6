@@ -6,7 +6,7 @@ Group members (3-5) (no Student IDs, only names and github usernames):
 
 2. Jimmy Kesikiadis (DimitriosK1000)
 
-3. 
+3. Jacob Turner (J6k3School)
 
 4. 
 
