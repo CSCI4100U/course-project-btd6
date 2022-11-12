@@ -157,7 +157,10 @@ class MapMainScreen extends State<MyHomePage> {
                             padding: const EdgeInsets.all(4.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Icon(Icons.ac_unit, color: Colors.cyanAccent,size: 150,),
+                              child: Icon(
+                                Icons.ac_unit,
+                                color: Colors.cyanAccent,
+                                size: 150,),
                             ),
                           ),
                         ),
