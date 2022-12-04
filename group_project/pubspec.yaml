@@ -37,6 +37,7 @@ dependencies:
   flutter_map: ^1.1.1
   firebase_core:
   cloud_firestore:
+  flutter_local_notifications:
 
   #----------------------added dependencies-------------------------
 
