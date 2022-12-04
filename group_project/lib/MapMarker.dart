@@ -6,6 +6,7 @@ class MapMarker {
   final String? address;
   final LatLng? location;
   final int? rating;
+  // DocumentReference? reference;
 
   MapMarker({
     required this.image,
@@ -14,6 +15,24 @@ class MapMarker {
     required this.location,
     required this.rating,
   });
+
+  // Product.fromMap(var map, {this.reference}){
+  //   this.image = map['image'];
+  //   this.title = map['title'];
+  //   this.address = map['address'];
+  //   this.location = map['location'];
+  //   this.rating = map['rating'];
+  // }
+  //
+  // Map<String,Object?> toMap(){
+  //   return {
+  //     'image': this.image,
+  //     'title': this.title,
+  //     'address': this.address,
+  //     'location': this.location,
+  //     'rating': this.rating,
+  //   };
+  // }
 }
 
 final mapMarkers = [
