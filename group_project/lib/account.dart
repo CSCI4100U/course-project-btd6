@@ -1,25 +1,28 @@
 class Acc{
-  String? title;
+  String? username;
   String? color;
-  String? location;
+  String? password;
+  String? email;
 
-  Acc({this.title,this.color,this.location});
+  Acc({this.username,this.color,this.password,this.email});
 
   String toString(){
-    return '($title), Color: $color, Location: $location';
+    return '($username), Password: $password, Email: $email, Color Scheme: $color';
   }
 
   Acc.fromMap(Map map){
-    this.title = map['title'];
+    this.username = map['username'];
     this.color = map['color'];
-    this.location = map['location'];
+    this.password = map['password'];
+    this.email = map['email'];
   }
 
   Map<String, Object?> toMap(){
     return {
-      'title': this.title,
+      'title': this.username,
       'color': this.color,
-      'location': this.location,
+      'password': this.password,
+      'email': this.email,
     };
   }
 }

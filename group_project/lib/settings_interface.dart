@@ -14,7 +14,7 @@ class PageInterface{
     );
   }
 
-  Future getAllPosts() async{
+  Future getAllAccs() async{
     final db = await DBUtils.init();
     final List maps = await db.query('local_db');
     List<Acc> result = [];
@@ -31,17 +31,17 @@ class PageInterface{
     return db.update(
       'local_db', //table you are inserting items into
       acc.toMap(), //what you are pushing into db
-      where: 'title = ?',
-      whereArgs: [acc.title],
+      where: 'username = ?',
+      whereArgs: [acc.username],
     );
   }
 
-  Future<int> deletePostWithUsername(String title) async{
+  Future<int> deletePostWithUsername(String username) async{
     final db = await DBUtils.init();
     return db.delete(
       'local_db', //table you are inserting items into
-      where: 'title = ?',
-      whereArgs: [title],
+      where: 'username = ?',
+      whereArgs: [username],
     );
   }
 }
