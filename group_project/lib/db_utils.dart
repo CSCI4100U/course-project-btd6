@@ -6,7 +6,7 @@ class DBUtils{
     var database = openDatabase(
         path.join(await getDatabasesPath(), 'local_variables.db'),
         onCreate: (db, version){
-          db.execute('CREATE TABLE local_db(username TEXT PRIMARY KEY, color TEXT, location TEXT)');
+          db.execute('CREATE TABLE local_db(username TEXT PRIMARY KEY, color TEXT, password TEXT, email TEXT)');
         },
         version:1
     );
