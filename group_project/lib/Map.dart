@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:group_project/Graphs.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'MapMarker.dart';
 import 'constants.dart';
@@ -15,6 +17,22 @@ class MapMainScreen extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    Geolocator.isLocationServiceEnabled().then((value) => null);
+    Geolocator.requestPermission().then((value) => null);
+    Geolocator.checkPermission().then(
+            (LocationPermission permission)
+        {
+          print("Check Location Permission: $permission");
+        }
+    );
+
+    Geolocator.getPositionStream(
+      locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.best
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 33, 32, 32),

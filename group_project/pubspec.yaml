@@ -40,6 +40,8 @@ dependencies:
   sqflite:
   flutter_local_notifications:
   intro_slider:
+  geocoding:
+  geolocator:
 
   #----------------------added dependencies-------------------------
 
