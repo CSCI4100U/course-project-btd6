@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+
 import 'Map.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               title: "Cloud Storage",
               theme: ThemeData(
-                  primarySwatch: Colors.blue
+                  primarySwatch: Colors.blueGrey
               ),
               home: MyHomePage(title: "Cloud Storage"),
             );
