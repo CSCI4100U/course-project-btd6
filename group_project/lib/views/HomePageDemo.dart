@@ -88,11 +88,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    //button style
+    final ButtonStyle style = ElevatedButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 20));
     _controller.forward();
     return Scaffold(
       body: Stack(
-        alignment: AlignmentDirectional.topCenter,
-        children: [
+        alignment: AlignmentDirectional.center,
+        children: <Widget>[
           IntroSlider(
             key: UniqueKey(),
 
@@ -117,18 +120,27 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
           ),
           //Container base for Title and button
-          Column(
+          Container(
             color: const Color(0xFFFCE4EC).withOpacity(0),
-            : const Alignment(0.04, -0.6),
+            alignment: const Alignment(0.04, -0.6),
             //container for title
-            child:
-              children: []        Container(
-
-                ),
+            child: Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0.5),
+              height: 50,
+              width: 200,
+              child: const Text(
+                'Rate My Location',
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
-        ],
+          ElevatedButton(
+              onPressed: () {},
+              style: style,
+              child: const Text('Login'),
+          ),
+        ]
       ),
     );
   }
