@@ -1,4 +1,7 @@
+//Frank Delgado (100784073), Date: 2022-12-04
 import 'package:flutter/material.dart';
+import 'package:intro_slider/intro_slider.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -30,72 +33,63 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //Slider content list
+  List<ContentConfig> listContent = [];
 
   @override
-  Widget build(BuildContext context) => Container(
-    decoration: const BoxDecoration(
-      image: DecorationImage(
-        image: NetworkImage("https://i.natgeofe.com/k/c41b4f59-181c-4747-ad20-ef69987c8d59/eiffel-tower-night_2x3.jpg"),
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: Container(
-      decoration:  const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.center,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.black12,
-            Colors.black87,
-          ],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: Text(widget.title),
-          actions: const [
-            Icon(Icons.account_circle_rounded)
-          ],
-        ),
-        body: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(32),
-          /*decoration: BoxDecoration(
-             border: Border.all(
-                 width: 4,
-                 color: Colors.black,
-                 style: BorderStyle.solid
-             ),
-             borderRadius: BorderRadius.circular(10),
-           ),*/
-          child: const Text(
-            'Rate My Location',
-            style: TextStyle(
-                fontSize: 50,
-                color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    ),
-  );
-}
+  void initState() {
+    super.initState();
 
-class backGroundLayout extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage("https://i.natgeofe.com/k/c41b4f59-181c-4747-ad20-ef69987c8d59/eiffel-tower-night_2x3.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
+    //adding to the content of the slider
+    listContent.add(
+      ContentConfig(
+        backgroundImage: "assets/homepagesliderimages/eiffel-tower-night_2x3.png",
+        backgroundImageFit: BoxFit.cover,
+        backgroundFilterOpacity: 0.5,
+        onCenterItemPress: () {},
+      ),
+    );
+    listContent.add(
+      ContentConfig(
+        backgroundImage: "assets/homepagesliderimages/stonehenge.jpg",
+        backgroundImageFit: BoxFit.cover,
+        backgroundFilterOpacity: 0.5,
+        onCenterItemPress: () {},
+      ),
+    );
+    listContent.add(
+      ContentConfig(
+        backgroundImage: "assets/homepagesliderimages/cntower.jpg",
+        backgroundImageFit: BoxFit.cover,
+        backgroundFilterOpacity: 0.5,
+        onCenterItemPress: () {},
       ),
     );
   }
-}
 
+  @override
+  Widget build(BuildContext context) {
+    return IntroSlider(
+      key: UniqueKey(),
+
+      //configuring slider content
+      listContentConfig: listContent,
+      //backgroundColorAllTabs: Colors.grey,
+
+      //scroll behaviour
+      isAutoScroll: true,
+      isLoopAutoScroll: true,
+
+      //indicator config
+      indicatorConfig: const IndicatorConfig(
+        isShowIndicator: false,
+      ),
+
+      //hiding buttons
+      isShowSkipBtn: false,
+      isShowNextBtn: false,
+      isShowPrevBtn: false,
+      isShowDoneBtn: false,
+    );
+  }
+}
