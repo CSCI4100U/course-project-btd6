@@ -6,14 +6,34 @@ import 'package:group_project/Graphs.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+import 'settings_interface.dart';
 import 'MapMarker.dart';
 import 'constants.dart';
 import 'main.dart';
+import 'account.dart';
 
 class MapMainScreen extends State<MyHomePage> {
   final pageController = PageController();
+  final local = SettingInterface();
 
   int selectedIndex = 0;
+
+  @override
+  void initState(){
+    // Acc dev = new Acc(username: 'dev_admin', color: 'red', password: 'e', email: 'dev_email@gmail.com');
+    // local.createAcc(dev);
+    _listAccs();
+  }
+
+  Future _listAccs() async{
+    List<Acc> acc = await local.getAllAccs();
+    //_posts = posts;
+    print('');
+    print('Accounts:');
+    for (Acc ac in acc){
+      print(ac);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,7 @@ class Acc{
 
   Map<String, Object?> toMap(){
     return {
-      'title': this.username,
+      'username': this.username,
       'color': this.color,
       'password': this.password,
       'email': this.email,

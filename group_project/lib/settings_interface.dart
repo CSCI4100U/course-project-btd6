@@ -3,7 +3,7 @@ import 'dart:async';
 import 'db_utils.dart';
 import 'account.dart';
 
-class PageInterface{
+class SettingInterface{
 
   Future<int> createAcc(Acc acc) async{
     final db = await DBUtils.init();
