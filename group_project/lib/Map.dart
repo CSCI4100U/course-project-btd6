@@ -75,6 +75,12 @@ class MapMainScreen extends State<MyHomePage> {
                 },
                 icon: Icon(Icons.add, color: Colors.white,)
             ),
+            IconButton(
+                onPressed: (){
+
+                },
+                icon: Icon(Icons.settings, color: Colors.white,)
+            ),
           ]
       ),
       body: Stack(

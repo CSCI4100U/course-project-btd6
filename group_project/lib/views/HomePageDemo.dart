@@ -94,53 +94,53 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     _controller.forward();
     return Scaffold(
       body: Stack(
-        alignment: AlignmentDirectional.center,
-        children: <Widget>[
-          IntroSlider(
-            key: UniqueKey(),
+          alignment: AlignmentDirectional.center,
+          children: <Widget>[
+            IntroSlider(
+              key: UniqueKey(),
 
-            //configuring slider content
-            listContentConfig: listContent,
-            //backgroundColorAllTabs: Colors.grey,
+              //configuring slider content
+              listContentConfig: listContent,
+              //backgroundColorAllTabs: Colors.grey,
 
-            //scroll behaviour
-            isAutoScroll: true,
-            isLoopAutoScroll: true,
+              //scroll behaviour
+              isAutoScroll: true,
+              isLoopAutoScroll: true,
 
-            //indicator config
-            indicatorConfig: const IndicatorConfig(
-              isShowIndicator: false,
+              //indicator config
+              indicatorConfig: const IndicatorConfig(
+                isShowIndicator: false,
+              ),
+
+              //hiding buttons
+              isShowSkipBtn: false,
+              isShowNextBtn: false,
+              isShowPrevBtn: false,
+              isShowDoneBtn: false,
+
             ),
-
-            //hiding buttons
-            isShowSkipBtn: false,
-            isShowNextBtn: false,
-            isShowPrevBtn: false,
-            isShowDoneBtn: false,
-
-          ),
-          //Container base for Title and button
-          Container(
-            color: const Color(0xFFFCE4EC).withOpacity(0),
-            alignment: const Alignment(0.04, -0.6),
-            //container for title
-            child: Container(
-              color: const Color(0xFFFCE4EC).withOpacity(0.5),
-              height: 50,
-              width: 200,
-              child: const Text(
-                'Rate My Location',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+            //Container base for Title and button
+            Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0),
+              alignment: const Alignment(0.04, -0.6),
+              //container for title
+              child: Container(
+                color: const Color(0xFFFCE4EC).withOpacity(0.5),
+                height: 50,
+                width: 200,
+                child: const Text(
+                  'Rate My Location',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
+            ElevatedButton(
               onPressed: () {},
               style: style,
               child: const Text('Login'),
-          ),
-        ]
+            ),
+          ]
       ),
     );
   }
