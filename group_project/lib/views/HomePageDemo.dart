@@ -32,9 +32,11 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
   //Slider content list
   List<ContentConfig> listContent = [];
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -65,31 +67,69 @@ class _MyHomePageState extends State<MyHomePage> {
         onCenterItemPress: () {},
       ),
     );
+    //initialize animation controller
+    _controller = AnimationController(
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    );
+
+    //fade animation
+    _animation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+  }
+  //animation disposer
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return IntroSlider(
-      key: UniqueKey(),
+    _controller.forward();
+    return Scaffold(
+      body: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          IntroSlider(
+            key: UniqueKey(),
 
-      //configuring slider content
-      listContentConfig: listContent,
-      //backgroundColorAllTabs: Colors.grey,
+            //configuring slider content
+            listContentConfig: listContent,
+            //backgroundColorAllTabs: Colors.grey,
 
-      //scroll behaviour
-      isAutoScroll: true,
-      isLoopAutoScroll: true,
+            //scroll behaviour
+            isAutoScroll: true,
+            isLoopAutoScroll: true,
 
-      //indicator config
-      indicatorConfig: const IndicatorConfig(
-        isShowIndicator: false,
+            //indicator config
+            indicatorConfig: const IndicatorConfig(
+              isShowIndicator: false,
+            ),
+
+            //hiding buttons
+            isShowSkipBtn: false,
+            isShowNextBtn: false,
+            isShowPrevBtn: false,
+            isShowDoneBtn: false,
+
+          ),
+          //Container base for Title and button
+          Column(
+            color: const Color(0xFFFCE4EC).withOpacity(0),
+            : const Alignment(0.04, -0.6),
+            //container for title
+            child:
+              children: []        Container(
+
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-
-      //hiding buttons
-      isShowSkipBtn: false,
-      isShowNextBtn: false,
-      isShowPrevBtn: false,
-      isShowDoneBtn: false,
     );
   }
 }
