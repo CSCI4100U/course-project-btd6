@@ -6,7 +6,7 @@ import 'MapMarker.dart';
 Widget barGraphVertical(){
   return Scaffold(
       appBar: AppBar(
-        title: Text("Horizontal Bar Chart", style: TextStyle(color: Colors.white),),
+        title: Text("Vertical Bar Chart", style: TextStyle(color: Colors.white),),
 
       ),
       body: SafeArea(

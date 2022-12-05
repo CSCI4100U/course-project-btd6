@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LayoutExample{
+class Layout{
   String? name;
   Widget? icon;
   Function? builder;
 
-  LayoutExample({this.builder, this.icon, this.name});
+  Layout({this.builder, this.icon, this.name});
 }
 
-PreferredSizeWidget switchGraph(List<LayoutExample> options){
+PreferredSizeWidget switchGraph(List<Layout> options){
   return TabBar(tabs: options.map((option) => Tab(text: option.name, icon: option.icon,)
   ).toList(),
   );

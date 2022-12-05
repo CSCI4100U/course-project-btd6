@@ -26,10 +26,10 @@ class _ChartState extends State<Charts> {
   @override
   Widget build(BuildContext context) {
 
-    List<LayoutExample> options = [
-      LayoutExample(name: "Vertical Bar", icon: Icon(Icons.view_column),
+    List<Layout> options = [
+      Layout(name: "Vertical Bar", icon: Icon(Icons.view_column),
           builder: barGraphVertical),
-      LayoutExample(name: "Horizontal Bar", icon: Icon(Icons.reorder),
+      Layout(name: "Horizontal Bar", icon: Icon(Icons.reorder),
           builder: barGraphHorizontal),
     ];
 
