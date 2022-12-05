@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+
 import 'Map.dart';
 
 void main() {
@@ -8,31 +9,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Firebase.initializeApp(),
-        builder: (context, snapshot){
-          if (snapshot.hasError){
-            print("Error initializing Firebase");
-          }
-          if (snapshot.connectionState == ConnectionState.done){
-            print ("Successfully connected to Firebase");
-            return MaterialApp(
-              title: "Cloud Storage",
-              theme: ThemeData(
-                  primarySwatch: Colors.blue
-              ),
-              home: MyHomePage(title: "Cloud Storage"),
-            );
-          }
-          else{
-            return CircularProgressIndicator();
-          }
-        }
+    return MaterialApp(
+      title: 'GeoLocation ',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Location Rating'),
     );
   }
 }

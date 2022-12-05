@@ -40,6 +40,8 @@ dependencies:
   sqflite:
   flutter_local_notifications:
   intro_slider:
+  geocoding:
+  geolocator:
 
   #----------------------added dependencies-------------------------
 
@@ -50,6 +52,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  #----------------------added dev_dependencies-------------------------
+
+  syncfusion_flutter_charts:
+
+  #----------------------added dev_dependencies-------------------------
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
