@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 
+import '../loginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -136,7 +137,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => LoginPage())
+                );
+              },
               style: style,
               child: const Text('Login'),
             ),
