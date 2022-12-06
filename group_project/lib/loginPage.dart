@@ -16,7 +16,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login", style: TextStyle(color: Colors.white),),
-
         ),
         body: Container(
           padding: const EdgeInsets.all(15),
@@ -45,17 +44,18 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () { },
                 child: const Text('Login'),
+                //check sqLite if userName and password match
+                //if they do, go to main map page
+                //if they dont, maybe add snack bar thing saying its wrong
               ),
               TextButton(
                 onPressed: () { },
-                child: const Text('Sign in'),
+                child: const Text('Create Account'),
+                //go to account creation page using navigator
               ),
-
             ],
           ),
         ),
-
-
     );
   }
 

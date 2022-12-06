@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../account.dart';
+import '../../../account.dart';
 
 class accountPage extends StatefulWidget {
   const accountPage({Key? key}) : super(key: key);
@@ -44,7 +44,10 @@ class _accountPageState extends State<accountPage> {
                 ),
                 FloatingActionButton(
                   onPressed: (){
-                    //make new
+                    //make new person account and add to sqlite
+                    //You might not need to make the new person.
+                    //You could just set each field and create the
+                    //person object in another spot with sqLite
                     Acc(username: username, email: email, password: password);
                   },
                   child: Text('Done'),
