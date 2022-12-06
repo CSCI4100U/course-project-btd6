@@ -1,8 +1,10 @@
 //Frank Delgado (100784073), Date: 2022-12-04
 import 'package:flutter/material.dart';
+import 'package:group_project/loginPage.dart';
 import 'package:intro_slider/intro_slider.dart';
+import 'package:delayed_display/delayed_display.dart';
 
-import '../loginPage.dart';
+//import '../loginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,11 +35,14 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   //Slider content list
   List<ContentConfig> listContent = [];
-  late AnimationController _controller;
-  late Animation<double> _animation;
+  //controllers and animations for title and button
+  late AnimationController _controllerTitle;
+  late Animation<double> _animationTitle;
+  late AnimationController _controllerButton;
+  late Animation<double> _animationButton;
 
   @override
   void initState() {
@@ -68,22 +73,46 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         onCenterItemPress: () {},
       ),
     );
-    //initialize animation controller
-    _controller = AnimationController(
+    listContent.add(
+      ContentConfig(
+        backgroundImage: "assets/homepagesliderimages/grandcanyon.jpg",
+        backgroundImageFit: BoxFit.cover,
+        backgroundFilterOpacity: 0.5,
+        onCenterItemPress: () {},
+      ),
+    );
+    listContent.add(
+      ContentConfig(
+        backgroundImage: "assets/homepagesliderimages/minegrande.jpg",
+        backgroundImageFit: BoxFit.cover,
+        backgroundFilterOpacity: 0.5,
+        onCenterItemPress: () {},
+      ),
+    );
+    //initialize animation controllers
+    _controllerTitle = AnimationController(
       duration: const Duration(seconds: 5),
       vsync: this,
     );
+    _controllerButton = AnimationController(
+        duration: const Duration(seconds: 5),
+        vsync: this,
+    );
 
-    //fade animation
-    _animation = Tween(
+    //animations
+    _animationTitle = Tween(
       begin: 0.0,
       end: 1.0,
-    ).animate(_controller);
+    ).animate(_controllerTitle);
+    _animationButton = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controllerButton);
   }
   //animation disposer
   @override
   void dispose() {
-    _controller.dispose();
+    _controllerTitle.dispose();
     super.dispose();
   }
 
@@ -92,7 +121,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     //button style
     final ButtonStyle style = ElevatedButton.styleFrom(
         textStyle: const TextStyle(fontSize: 20));
-    _controller.forward();
+    //call animation controllers
+    _controllerTitle.forward();
+    _controllerButton.forward();
     return Scaffold(
       body: Stack(
           alignment: AlignmentDirectional.center,
@@ -125,26 +156,46 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               color: const Color(0xFFFCE4EC).withOpacity(0),
               alignment: const Alignment(0.04, -0.6),
               //container for title
-              child: Container(
-                color: const Color(0xFFFCE4EC).withOpacity(0.5),
-                height: 50,
-                width: 200,
-                child: const Text(
-                  'Rate My Location',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
+              child: DelayedDisplay(
+                delay: const Duration(seconds: 2),
+                child: FadeTransition(
+                  opacity: _animationTitle,
+                  child: Container(
+                    color: const Color(0xFFFCE4EC).withOpacity(0),
+                    height: 200,
+                    width: 300,
+                    child: const Text(
+                      'Rate My Location',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => LoginPage())
-                );
-              },
-              style: style,
-              child: const Text('Login'),
-            ),
+              DelayedDisplay(
+                delay: const Duration(seconds: 5),
+                  child: FadeTransition(
+                    opacity: _animationButton,
+                    child: SizedBox(
+                      width: 200.0,
+                      height: 50.0,
+                      child: ElevatedButton(
+                        onPressed: () {
+                           Navigator.of(context).push(MaterialPageRoute(
+                               builder: (context) => LoginPage())
+                           );
+                        },
+                        style: style,
+                        child: const Text('Login'),
+                      ),
+                    ),
+                  ),
+              ),
           ]
       ),
     );
