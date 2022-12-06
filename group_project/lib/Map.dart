@@ -11,10 +11,13 @@ import 'MapMarker.dart';
 import 'constants.dart';
 import 'main.dart';
 import 'account.dart';
+import 'ratingNotification.dart';
 
 class MapMainScreen extends State<MyHomePage> {
   final pageController = PageController();
   final local = SettingInterface();
+  final _notifications = Notifications();
+
 
   int selectedIndex = 0;
 
@@ -80,6 +83,10 @@ class MapMainScreen extends State<MyHomePage> {
 
                 },
                 icon: Icon(Icons.settings, color: Colors.white,)
+            ),
+            IconButton(
+                onPressed: _notificationNow,
+                icon: Icon(Icons.notification_add, color: Colors.white,)
             ),
           ]
       ),
@@ -244,6 +251,14 @@ class MapMainScreen extends State<MyHomePage> {
     );
 
   }
+
+  void _notificationNow() async{
+    _notifications.sendNotifNow(
+        "Title",
+        "Body",
+        "Payload");
+  }
+
   // Future getGrades() async{
   //   print("Getting the grades...");
   //   print(await FirebaseFirestore.instance.collection('Locations').get());

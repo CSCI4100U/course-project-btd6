@@ -7,25 +7,38 @@ import 'Map.dart';
 //  Basis is done, button needs to be implments so when the rating is selected
 //  it gives the notification its address and rating.
 
-class Notification {
+class Notifications {
 
   final channelID = "TestNotif";
   final channelName = "Test Notification";
   final channelDescription = "Test Notification Description";
 
-  var _flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
+  var _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   NotificationDetails? _platformChannelInfo;
   var _notificationID = 100;
 
   Future init() async {
+
+    if(Platform.isIOS){
+      _requestIOSPermission();
+    }
+
     var initializationSettingsAndroid
     = AndroidInitializationSettings('mipmap/ic_launcher');
 
-    var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid,
+    var initializationSettingsIOS = DarwinInitializationSettings(
+      onDidReceiveLocalNotification: (int id,
+          String? title, String? body, String? payload){
+        return null;
+      },
     );
 
-    _flutterLocalNotificationPlugin
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid,
+        iOS: initializationSettingsIOS,
+    );
+
+    _flutterLocalNotificationsPlugin
         .initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
     );
@@ -33,15 +46,18 @@ class Notification {
     var androidChannelInfo = AndroidNotificationDetails(channelID,
         channelName, channelDescription: channelDescription);
 
+    var iosChannelInfo = DarwinNotificationDetails();
+
     _platformChannelInfo = NotificationDetails(
       android: androidChannelInfo,
+      iOS: iosChannelInfo,
     );
   }
 
   void sendNotifNow(String title, String body, String payload) {
-    print(_flutterLocalNotificationPlugin.toString());
+    print(_flutterLocalNotificationsPlugin.toString());
 
-    _flutterLocalNotificationPlugin.show(
+    _flutterLocalNotificationsPlugin.show(
         _notificationID++,
         title,
         body,
@@ -56,5 +72,14 @@ class Notification {
       print("NotificationResponse::payload = "
           "${notificationResponse.payload}");
     }
+  }
+
+  _requestIOSPermission(){
+    _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation
+    <IOSFlutterLocalNotificationsPlugin>()!.requestPermissions(
+      sound: true,
+      badge: true,
+      alert: false,
+    );
   }
 }
