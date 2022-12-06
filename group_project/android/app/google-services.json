@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "31706877080",
+    "project_id": "culmproject-ceadf",
+    "storage_bucket": "culmproject-ceadf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31706877080:android:3c30a97ed45798452954ed",
+        "android_client_info": {
+          "package_name": "com.example.group_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31706877080-a5o6c4o9kei9l2v3rgrbaks5btrl9btl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8yhqvFfkA76m_ZbT_NgTXQp04UpuWHjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31706877080-a5o6c4o9kei9l2v3rgrbaks5btrl9btl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

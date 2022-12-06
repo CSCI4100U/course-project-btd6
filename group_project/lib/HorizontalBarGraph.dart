@@ -15,7 +15,7 @@ Widget barGraphHorizontal(){
             series: <ChartSeries>[
               BarSeries<MapMarker, String>(
                 dataSource: chartData,
-                xValueMapper: (MapMarker gdp, _) => gdp.title,
+                xValueMapper: (MapMarker gdp, _) => gdp.username,
                 yValueMapper: (MapMarker gdp, _) => gdp.rating,
               ),
             ],

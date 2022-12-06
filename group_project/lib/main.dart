@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Map.dart';
 
 
 import 'Map.dart';
@@ -14,12 +15,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GeoLocation ',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Location Rating'),
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot){
+        if (snapshot.hasError){
+          print("Error connecting to Firebase");
+        }
+        if (snapshot.connectionState == ConnectionState.done){
+          print("Successfully connect to Firebase");
+          return MaterialApp(
+            title: "Group Project",
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: MyHomePage(title: 'group project')
+          );
+        }else {
+          return CircularProgressIndicator();
+        }
+      }
     );
   }
 }
