@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:group_project/Graphs.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-// import 'package:group_project/views/HomePageDemo.dart';
 
-import 'SettingsPage.dart';
 import 'settings_interface.dart';
 import 'MapMarker.dart';
 import 'constants.dart';
@@ -41,34 +38,28 @@ class MapMainScreen extends State<MyHomePage> {
     }
   }
 
-  Future getMarkers() async{
-    print("Retrieving Marker DB");
-    return await FirebaseFirestore.instance.collection('Posts').get();
-  }
+  @override
+  Widget build(BuildContext context) {
 
-  Widget _getMarkers(BuildContext context){
-    return FutureBuilder(
-      future: getMarkers(),
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        print("snapshot $snapshot");
-        if (!snapshot.hasData){
-          print("Data is missing");
-          return CircularProgressIndicator();
-        }else{
-          print("found data");
-          return _MapOutput(context);
+    Geolocator.isLocationServiceEnabled().then((value) => null);
+    Geolocator.requestPermission().then((value) => null);
+    Geolocator.checkPermission().then(
+            (LocationPermission permission)
+        {
+          print("Check Location Permission: $permission");
         }
-      }
     );
-  }
 
-  Widget _MapOutput(BuildContext context){
-    //var mapMarkers = MapMarker().mapMarkers;
+    Geolocator.getPositionStream(
+      locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.best
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 33, 32, 32),
-          title: const Text('Location Rating'),
+        backgroundColor: const Color.fromARGB(255, 33, 32, 32),
+        title: const Text('Location Rating'),
           actions: [
             IconButton(
                 onPressed: (){
@@ -89,9 +80,7 @@ class MapMainScreen extends State<MyHomePage> {
             ),
             IconButton(
                 onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => SettingsPage()
-                  ));
+
                 },
                 icon: Icon(Icons.settings, color: Colors.white,)
             ),
@@ -130,29 +119,29 @@ class MapMainScreen extends State<MyHomePage> {
                       point: mapMarkers[i].location ?? AppConstants.myLocation,
                       builder: (_) {
                         return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              pageController.animateToPage(
-                                i,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                              );
-                              selectedIndex = i;
-                            });
-                          },
+                            onTap: () {
+                              setState(() {
+                                pageController.animateToPage(
+                                  i,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                );
+                                selectedIndex = i;
+                              });
+                            },
 
-                          child: AnimatedScale(
-                            duration: const Duration(milliseconds: 500),
-                            scale: selectedIndex == i ? 1 : 0.75,
-                            child: AnimatedOpacity(
+                            child: AnimatedScale(
                               duration: const Duration(milliseconds: 500),
-                              opacity: selectedIndex == i ? 1 : 0.75,
-                              child:Icon(
-                                Icons.location_pin,
-                                color: Colors.redAccent,
+                              scale: selectedIndex == i ? 1 : 0.75,
+                              child: AnimatedOpacity(
+                                duration: const Duration(milliseconds: 500),
+                                opacity: selectedIndex == i ? 1 : 0.75,
+                                child:Icon(
+                                  Icons.location_pin,
+                                  color: Colors.redAccent,
+                                ),
                               ),
                             ),
-                          ),
                         );
                       },
                     ),
@@ -214,16 +203,16 @@ class MapMainScreen extends State<MyHomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      item.username ?? '',
+                                      item.title ?? '',
                                       style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white
                                       ),
                                     ),
                                     const SizedBox(height: 10),
                                     Text(
-                                      item.rating.toString() ?? '',
+                                      item.address ?? '',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.grey,
@@ -260,27 +249,6 @@ class MapMainScreen extends State<MyHomePage> {
         ],
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    Geolocator.isLocationServiceEnabled().then((value) => null);
-    Geolocator.requestPermission().then((value) => null);
-    Geolocator.checkPermission().then(
-            (LocationPermission permission)
-        {
-          print("Check Location Permission: $permission");
-        }
-    );
-
-    Geolocator.getPositionStream(
-      locationSettings: LocationSettings(
-          accuracy: LocationAccuracy.best
-      ),
-    );
-
-    return _getMarkers(context);
 
   }
 

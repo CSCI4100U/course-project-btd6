@@ -17,7 +17,7 @@ class Notifications {
   NotificationDetails? _platformChannelInfo;
   var _notificationID = 100;
 
-  Future init() async {
+  init() async {
 
     if(Platform.isIOS){
       _requestIOSPermission();
