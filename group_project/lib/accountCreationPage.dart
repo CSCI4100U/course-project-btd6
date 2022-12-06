@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:group_project/settings_interface.dart';
 import '../../../account.dart';
+import 'loginPage.dart';
 
 class accountPage extends StatefulWidget {
   const accountPage({Key? key}) : super(key: key);
@@ -9,9 +11,15 @@ class accountPage extends StatefulWidget {
 }
 
 class _accountPageState extends State<accountPage> {
-  var username;
-  var email;
-  var password;
+  var _username;
+  var _email;
+  var _password;
+  final local = SettingInterface();
+
+  Future addAcc(Acc ac) async{
+    local.createAcc(ac);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,22 +32,21 @@ class _accountPageState extends State<accountPage> {
                   decoration: InputDecoration(hintText: 'Name'),
                   //store what they as name in personAccount
                   onChanged: (value){
-                    username = value;
-                    username = username;
+                    _username = value;
                   },
                 ),
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Email'),
                   //store what they as email in personAccount
                   onChanged: (value){
-                    email = value;
+                    _email = value;
                   },
                 ),
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Password'),
                   //store what they as password in personAccount
                   onChanged: (value){
-                    password = value;
+                    _password = value;
                   },
                 ),
                 FloatingActionButton(
@@ -48,7 +55,11 @@ class _accountPageState extends State<accountPage> {
                     //You might not need to make the new person.
                     //You could just set each field and create the
                     //person object in another spot with sqLite
-                    Acc(username: username, email: email, password: password);
+                    Acc temp = Acc(username: _username, email: _email, password: _password);
+                    addAcc(temp);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => LoginPage()
+                    ));
                   },
                   child: Text('Done'),
                 ),

@@ -24,8 +24,10 @@ class _LoginPageState extends State<LoginPage> {
 
   Future queryLocal(String? u, String? p) async {
     List<Acc> acc = await local.getAllAccs();
+    print("accounts fetched");
     for (Acc ac in acc){
       if(_username! == ac.username! && _password! == ac.password!){
+        print("account found");
         _user = _username;
         islogin = true;
       }
@@ -65,10 +67,13 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () {
                   queryLocal(_username, _password);
+
                   if(islogin == true){
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => MyHomePage(title: "map", user: _user)
                     ));
+                  }else{
+                    print("incorrect username or password");
                   }
                 },
                 child: const Text('Login'),
