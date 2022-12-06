@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,18 +14,21 @@ import 'constants.dart';
 import 'main.dart';
 import 'account.dart';
 import 'ratingNotification.dart';
+import 'package:latlong2/latlong.dart';
+
 
 class MapMainScreen extends State<MyHomePage> {
   final pageController = PageController();
   final local = SettingInterface();
-  final _notifications = Notifications();
 
+  // calling notification class
+  final _notifications = Notifications();
 
   int selectedIndex = 0;
 
   // vairiables for notification
   String? notifTitle = "Location Rating";
-  String? notifAddress = MapMarker().address;
+  LatLng? notifAddress = MapMarker().location;
   Int? notifRating = MapMarker().rating as Int?;
   String? notifPayload = "This is the payload";
 
