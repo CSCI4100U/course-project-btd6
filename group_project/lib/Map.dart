@@ -30,7 +30,7 @@ class MapMainScreen extends State<MyHomePage> {
   String? notifTitle = "Location Rating";
   LatLng? notifAddress = MapMarker().location;
   Int? notifRating = MapMarker().rating as Int?;
-  String? notifPayload = "This is the payload";
+  String? notifPayload = "This is the payload xd";
 
   @override
   void initState(){
