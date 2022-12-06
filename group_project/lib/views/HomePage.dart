@@ -7,11 +7,11 @@ import 'package:delayed_display/delayed_display.dart';
 //import '../loginPage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const HomePageScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePageScreen extends StatelessWidget {
+  const HomePageScreen({super.key});
 
   // This widget is the root of your application.
   @override

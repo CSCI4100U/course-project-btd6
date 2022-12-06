@@ -57,7 +57,7 @@ class MapMainScreen extends State<MyHomePage> {
     return await FirebaseFirestore.instance.collection('Posts').get();
   }
 
-    _notifications.init();
+    //_notifications.init();
 
   Widget _getMarkers(BuildContext context){
     return FutureBuilder(
