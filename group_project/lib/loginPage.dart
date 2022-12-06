@@ -1,16 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:group_project/Graphs.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 
-import 'settings_interface.dart';
-import 'MapMarker.dart';
-import 'constants.dart';
-import 'main.dart';
-import 'account.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,5 +10,53 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String? _todoItem;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Login", style: TextStyle(color: Colors.white),),
+
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              TextField(
+                style: const TextStyle(fontSize: 30),
+                decoration: const InputDecoration(
+                    label: Text("Username",),
+                    hintText: "Enter username"
+                ),
+                onChanged: (value){
+                  _todoItem = value;
+                },
+              ),
+              TextField(
+                style: const TextStyle(fontSize: 30),
+                decoration: const InputDecoration(
+                    label: Text("Password",),
+                    hintText: "Enter password"
+                ),
+                onChanged: (value){
+                  _todoItem = value;
+                },
+              ),
+              TextButton(
+                onPressed: () { },
+                child: const Text('Login'),
+              ),
+              TextButton(
+                onPressed: () { },
+                child: const Text('Sign in'),
+              ),
+
+            ],
+          ),
+        ),
+
+
+    );
+  }
 
 }

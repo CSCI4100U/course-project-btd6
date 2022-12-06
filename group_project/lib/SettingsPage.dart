@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:group_project/Graphs.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 
-import 'settings_interface.dart';
-import 'MapMarker.dart';
-import 'constants.dart';
-import 'main.dart';
-import 'account.dart';
+
+import 'ChangeColor.dart';
+import 'ChangeEmail.dart';
+
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -21,10 +16,10 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
 
-  var _insVal;
-  final local = SettingInterface();
-  final username = "fuck you riley";
-  var current;
+  // var _insVal;
+  // final local = SettingInterface();
+  // final String username = "fuck you riley";
+  // var current;
 
   @override
   void initState(){
@@ -34,13 +29,13 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future _getAcc() async{
-    List<Acc> acc = await local.getAllAccs();
-    for (Acc ac in acc){
-      if (ac.username == 'username'){
-        print("Found ${ac.username}");
-        current = ac;
-      }
-    }
+    // List<Acc> acc = await local.getAllAccs();
+    // for (Acc ac in acc){
+    //   if (ac.username == 'username'){
+    //     print("Found ${ac.username}");
+    //     current = ac;
+    //   }
+    // }
     // print('');
     // print('Accounts:');
     // for (Acc ac in acc){
@@ -52,29 +47,48 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-          title: Text("Settings")
+          title: const Text("Settings")
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Text('Username:'),
-              Text(current.username),
-            ]
-          ),
-          Row(
+      body: FittedBox(
+        child: Container(
+          padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Email:'),
-                Text(current.email),
-                IconButton(
-                  onPressed: (){
-
-                  }
-
+                Row(
+                    children: [
+                      Text('Username:   current.username',style: TextStyle(fontSize: 20,color: Colors.black)),
+                    ]
+                ),
+                TextButton(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChangeEmailPage()
+                      ));
+                      },
+                    child: Row(
+                      children: [
+                        Text('Email:    current_email   ',style: TextStyle(fontSize: 20,color: Colors.black)),
+                        Icon(Icons.arrow_forward_ios_rounded, size: 15),
+                      ],
+                    )
+                ),
+                TextButton(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChangeColorPage()
+                      ));
+                      },
+                    child: Row(
+                      children: [
+                        Text('Color:    current_color   ',style: TextStyle(fontSize: 20,color: Colors.black)),
+                        Icon(Icons.arrow_forward_ios_rounded, size: 12,)
+                      ],
+                    )
                 ),
               ]
           ),
-        ]
+        ),
       ),
     );
   }

@@ -6,7 +6,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:group_project/Graphs.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+// import 'package:group_project/views/HomePageDemo.dart';
 
+import 'SettingsPage.dart';
 import 'settings_interface.dart';
 import 'MapMarker.dart';
 import 'constants.dart';
@@ -87,7 +89,9 @@ class MapMainScreen extends State<MyHomePage> {
             ),
             IconButton(
                 onPressed: (){
-
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SettingsPage()
+                  ));
                 },
                 icon: Icon(Icons.settings, color: Colors.white,)
             ),

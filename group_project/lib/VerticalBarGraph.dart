@@ -9,7 +9,8 @@ Widget barGraphVertical(){
         title: Text("Vertical Bar Chart", style: TextStyle(color: Colors.white),),
 
       ),
-      body: SafeArea(
+      body: Container(
+        padding: const EdgeInsets.all(15),
         child: Scaffold(
           body: SfCartesianChart(
             series: <ChartSeries>[
