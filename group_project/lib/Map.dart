@@ -21,6 +21,12 @@ class MapMainScreen extends State<MyHomePage> {
 
   int selectedIndex = 0;
 
+  // vairiables for notification
+  String? notifTitle = "Location Rating";
+  String? notifAddress = MapMarker().address;
+  Int? notifRating = MapMarker().rating as Int?;
+  String? notifPayload = "This is the payload";
+
   @override
   void initState(){
     // Acc dev = new Acc(username: 'dev_admin', color: 'red', password: 'e', email: 'dev_email@gmail.com');
@@ -40,6 +46,8 @@ class MapMainScreen extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    _notifications.init();
 
     Geolocator.isLocationServiceEnabled().then((value) => null);
     Geolocator.requestPermission().then((value) => null);
