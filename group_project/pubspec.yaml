@@ -42,6 +42,7 @@ dependencies:
   intro_slider:
   geocoding:
   geolocator:
+  delayed_display:
 
   #----------------------added dependencies-------------------------
 
