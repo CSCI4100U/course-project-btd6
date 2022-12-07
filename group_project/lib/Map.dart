@@ -76,7 +76,7 @@ class MapMainScreen extends State<MyHomePage> {
           print("snapshot $snapshot");
           if (!snapshot.hasData){
             print("Data is missing");
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }else{
             print("found data");
             return _MapOutput(context);
@@ -105,13 +105,13 @@ class MapMainScreen extends State<MyHomePage> {
                       )
                   );
                 },
-                icon: Icon(Icons.insert_chart, color: Colors.white,)
+                icon: const Icon(Icons.insert_chart, color: Colors.white,)
             ),
             IconButton(
                 onPressed: (){
 
                 },
-                icon: Icon(Icons.add, color: Colors.white,)
+                icon: const Icon(Icons.add, color: Colors.white,)
             ),
             IconButton(
                 onPressed: (){
@@ -119,11 +119,11 @@ class MapMainScreen extends State<MyHomePage> {
                       builder: (context) => SettingsPage(user: user)
                   ));
                 },
-                icon: Icon(Icons.settings, color: Colors.white,)
+                icon: const Icon(Icons.settings, color: Colors.white,)
             ),
             IconButton(
                 onPressed: _notificationNow,
-                icon: Icon(Icons.notification_add, color: Colors.white,)
+                icon: const Icon(Icons.notification_add, color: Colors.white,)
             ),
           ]
       ),
@@ -267,10 +267,7 @@ class MapMainScreen extends State<MyHomePage> {
                             padding: const EdgeInsets.all(4.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Icon(
-                                Icons.ac_unit,
-                                color: Colors.cyanAccent,
-                                size: 150,),
+                              child: const Icon(Icons.ac_unit, color: Colors.cyanAccent, size: 150,),
                             ),
                           ),
                         ),

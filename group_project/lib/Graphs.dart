@@ -28,7 +28,7 @@ class _ChartState extends State<Charts> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Locations Highest Score", style: TextStyle(color: Colors.white),),
+          title: const Text("Locations Highest Score", style: TextStyle(color: Colors.white),),
 
         ),
         body: Container(
