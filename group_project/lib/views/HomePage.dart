@@ -329,11 +329,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   void _showAboutDialog(BuildContext context) {
     showAboutDialog(
       context: context,
-      applicationName: 'Dialogs and Navigation',
-      applicationVersion: 'Version 0.1.1',
+      applicationIcon: Icon(Icons.adb, size: 50,),
+      applicationName: 'Rate My Location',
+      applicationVersion: 'Version 1.0.0',
       children: [
-        Text('Dialogs and Navigation'),
-        Text('Copyright 2020 - Some Person'),
+        Text('Rate My Location'),
+        Text('Copyright 2022 - BTD6'),
       ],
     );
   }
