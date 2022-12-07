@@ -15,6 +15,9 @@ Group members (3-5) (no Student IDs, only names and github usernames):
 Technical Report:
 https://docs.google.com/document/d/1znz_N0N0JUCxC6xFEcKuunx9fJ5aSVew3v0H9Dk6Euo/edit
 
+References:
+https://docs.google.com/document/d/1D-mIev_zakK8_kiK4EOCOUbarCbg7sjEJqK5rQisSJU/edit?usp=sharing
+
 Riley's Google Drive Link:
 https://drive.google.com/file/d/1vZFcVp-SX7xx95QUvKgKn_01vUnqJSUW/view?usp=share_link
 
