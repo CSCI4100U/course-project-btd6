@@ -1,0 +1,18 @@
+{
+  "homepage": {
+    "title": "Rate My Location",
+    "login": "Login",
+    "about": "About Us",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "account": "Create Account"
+  },
+  "map": {
+    "title": "Location Rating"
+  }
+}

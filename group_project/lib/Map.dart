@@ -9,7 +9,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:group_project/Graphs.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-// import 'package:group_project/views/HomePageDemo.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'DataTable.dart';
 import 'SettingsPage.dart';
@@ -114,7 +114,7 @@ class MapMainScreen extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 33, 32, 32),
-          title: const Text('Location Rating'),
+          title: Text(FlutterI18n.translate(context, "map.title")),
           actions: [
             IconButton(
                 onPressed: (){

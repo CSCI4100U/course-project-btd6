@@ -1,0 +1,18 @@
+{
+  "homepage": {
+    "title": "Evalua Mi Ubicación",
+    "login": "Conectar",
+    "about": "Sobre Nosotros",
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "login": {
+    "username": "Usuario",
+    "password": "Contraseña",
+    "login": "Conectar",
+    "account": "Crear Cuenta"
+  },
+  "map": {
+    "title": "Calificación de Ubicación"
+  }
+}

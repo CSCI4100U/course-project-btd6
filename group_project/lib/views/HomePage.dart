@@ -1,10 +1,11 @@
-//Frank Delgado (100784073), Date: 2022-12-04
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:group_project/loginPage.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:delayed_display/delayed_display.dart';
-
-//import '../loginPage.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const HomePageScreen());
@@ -22,6 +23,24 @@ class HomePageScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Rate My Location'),
+      localizationsDelegates: [
+        FlutterI18nDelegate(
+          missingTranslationHandler: (key,locale){
+            print("MISSING KEY $key, Language Code: ${locale!.languageCode}");
+          },
+        translationLoader: FileTranslationLoader(
+          useCountryCode: false,
+          fallbackFile: 'en',
+          basePath: 'assets/i18n',
+        ),
+      ),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('es', ''),
+      ],
     );
   }
 }
@@ -45,6 +64,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   late Animation<double> _animationButton;
   late AnimationController _controllerAboutUs;
   late Animation<double> _animationAboutUs;
+  late AnimationController _controllerLanguage;
+  late Animation<double> _animationLanguage;
 
   @override
   void initState() {
@@ -104,6 +125,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       duration: const Duration(seconds: 5),
       vsync: this,
     );
+    _controllerLanguage = AnimationController(
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    );
 
     //animations
     _animationTitle = Tween(
@@ -118,6 +143,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       begin: 0.0,
       end: 1.0,
     ).animate(_controllerButton);
+    _animationLanguage = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controllerLanguage);
   }
   //animation disposer
   @override
@@ -135,6 +164,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
     _controllerTitle.forward();
     _controllerButton.forward();
     _controllerAboutUs.forward();
+    _controllerLanguage.forward();
     return Scaffold(
       body: Stack(
           alignment: AlignmentDirectional.bottomCenter,
@@ -175,9 +205,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                     color: const Color(0xFFFCE4EC).withOpacity(0),
                     height: 200,
                     width: 300,
-                    child: const Text(
-                      'Rate My Location',
-                      style: TextStyle(
+                    child: Text(FlutterI18n.translate(context, "homepage.title"),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 50,
                         color: Colors.white,
@@ -206,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                         );
                       },
                       style: style,
-                      child: const Text('Login'),
+                      child: Text(FlutterI18n.translate(context, "homepage.login")),
                     ),
                   ),
                 ),
@@ -230,7 +259,63 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                         _showAboutDialog(context);
                       },
                       style: style,
-                      child: const Text('About us'),
+                      child: Text(FlutterI18n.translate(context, "homepage.about")),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0),
+              height: 200,
+              width: 200,
+              alignment: const Alignment(0.00, -0.8),
+              //container for title
+              child: DelayedDisplay(
+                delay: const Duration(seconds: 6),
+                child: FadeTransition(
+                  opacity: _animationLanguage,
+                  child: SizedBox(
+                    height: 50,
+                    width: 120,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Locale newLocale = Locale('en');
+                        await FlutterI18n.refresh(context, newLocale);
+                        setState(() {
+
+                        });
+                      },
+                      style: style,
+                      child: Text(FlutterI18n.translate(context, "homepage.english")),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0),
+              height: 100,
+              width: 200,
+              alignment: const Alignment(0.00, -0.8),
+              //container for title
+              child: DelayedDisplay(
+                delay: const Duration(seconds: 6),
+                child: FadeTransition(
+                  opacity: _animationLanguage,
+                  child: SizedBox(
+                    height: 50,
+                    width: 120,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Locale newLocale = Locale('es');
+                        await FlutterI18n.refresh(context, newLocale);
+                        setState(() {
+
+                        });
+                      },
+                      style: style,
+                      child: Text(FlutterI18n.translate(context, "homepage.spanish")),
                     ),
                   ),
                 ),

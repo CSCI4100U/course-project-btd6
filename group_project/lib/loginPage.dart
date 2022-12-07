@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_project/settings_interface.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'Map.dart';
 import 'account.dart';
@@ -12,6 +15,7 @@ import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -50,7 +54,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Login", style: TextStyle(color: Colors.white),),
+          title: Text(FlutterI18n.translate(context, "login.login"),
+            style: TextStyle(color: Colors.white),),
         ),
         body: Container(
           padding: const EdgeInsets.all(15),
@@ -58,9 +63,9 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               TextField(
                 style: const TextStyle(fontSize: 30),
-                decoration: const InputDecoration(
-                    label: Text("Username",),
-                    hintText: "Enter username"
+                decoration: InputDecoration(
+                    label: Text(FlutterI18n.translate(context, "login.username")),
+                    hintText: FlutterI18n.translate(context, "login.username")
                 ),
                 onChanged: (value){
                   _username = value;
@@ -69,9 +74,9 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 obscureText: true,
                 style: const TextStyle(fontSize: 30),
-                decoration: const InputDecoration(
-                    label: Text("Password",),
-                    hintText: "Enter password"
+                decoration: InputDecoration(
+                    label: Text(FlutterI18n.translate(context, "login.password")),
+                    hintText: FlutterI18n.translate(context, "login.password")
                 ),
                 onChanged: (value){
                   _password = value;
@@ -89,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
                 },
-                child: const Text('Login'),
+                child: Text(FlutterI18n.translate(context, "login.login")),
                 //check sqLite if userName and password match
                 //if they do, go to main map page
                 //if they dont, maybe add snack bar thing saying its wrong
@@ -100,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                       builder: (context) => const accountPage()
                   ));
                 },
-                child: const Text('Create Account'),
+                child: Text(FlutterI18n.translate(context, "login.account")),
                 //go to account creation page using navigator
               ),
             ],
