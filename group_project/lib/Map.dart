@@ -11,6 +11,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
+import 'AddNewRatingInfo.dart';
 import 'DataTable.dart';
 import 'SettingsPage.dart';
 import 'marker_interface.dart';
@@ -127,7 +128,9 @@ class MapMainScreen extends State<MyHomePage> {
             ),
             IconButton(
                 onPressed: (){
-
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AddRating(),
+                  ));
                 },
                 icon: const Icon(Icons.add, color: Colors.white,)
             ),
@@ -297,9 +300,9 @@ class MapMainScreen extends State<MyHomePage> {
               },
             ),
           )
-
         ],
       ),
+
     );
   }
 
