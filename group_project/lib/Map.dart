@@ -13,6 +13,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'DataTable.dart';
 import 'SettingsPage.dart';
+import 'marker_interface.dart';
 import 'settings_interface.dart';
 import 'MapMarker.dart';
 import 'constants.dart';
@@ -32,7 +33,7 @@ class MapMainScreen extends State<MyHomePage> {
 
   final pageController = PageController();
   final local = SettingInterface();
-
+  final markerdb = MarkerInterface();
   // calling notification class
   final _notifications = Notifications();
 
@@ -52,6 +53,10 @@ class MapMainScreen extends State<MyHomePage> {
     // local.createAcc(dev);
     // _listAccs();
 
+    MapMarker test = MapMarker(username:"devtest01",latitude:43.9456,longitude:-78.8968,rating:2);
+    markerdb.createMarker(test);
+    _listMarkers();
+
   }
 
   Future _listAccs() async{
@@ -64,9 +69,19 @@ class MapMainScreen extends State<MyHomePage> {
     }
   }
 
+  Future _listMarkers() async{
+    List<MapMarker> m = await markerdb.getAllMarker();
+    //_posts = posts;
+    print('');
+    print('Markers:');
+    for (MapMarker map in m){
+      print(map);
+    }
+  }
+
   Future getMarkers() async{
     print("Retrieving Marker DB");
-    return await FirebaseFirestore.instance.collection('Posts').get();
+    // return await FirebaseFirestore.instance.collection('Posts').get();
   }
 
   //_notifications.init();
@@ -89,8 +104,9 @@ class MapMainScreen extends State<MyHomePage> {
 
   Widget _MapOutput(BuildContext context){
     var mapMarkers = [
-      MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
-      MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4),
+      MapMarker(username:"devtest01",latitude:43.9456,longitude:-78.8968,rating:2)
+      // MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
+      // MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4
     ];
 
     _notifications.init();
