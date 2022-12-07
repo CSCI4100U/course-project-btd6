@@ -9,7 +9,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:group_project/Graphs.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-// import 'package:group_project/views/HomePageDemo.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'DataTable.dart';
 import 'SettingsPage.dart';
@@ -45,6 +45,7 @@ class MapMainScreen extends State<MyHomePage> {
   LatLng? notifAddress = MapMarker().location;
   Int? notifRating = MapMarker().rating as Int?;
   String? notifPayload = "This is the payload xd";
+  var mapMarkers;
 
   @override
   void initState(){
@@ -53,7 +54,7 @@ class MapMainScreen extends State<MyHomePage> {
     // local.createAcc(dev);
     // _listAccs();
 
-    MapMarker test = MapMarker(username:"devtest01",latitude:43.9456,longitude:-78.8968,rating:2);
+    MapMarker test = MapMarker(username:"devtest07",latitude:43.9466,longitude:-78.8978,rating:1);
     markerdb.createMarker(test);
     _listMarkers();
 
@@ -61,7 +62,6 @@ class MapMainScreen extends State<MyHomePage> {
 
   Future _listAccs() async{
     List<Acc> acc = await local.getAllAccs();
-    //_posts = posts;
     print('');
     print('Accounts:');
     for (Acc ac in acc){
@@ -71,12 +71,16 @@ class MapMainScreen extends State<MyHomePage> {
 
   Future _listMarkers() async{
     List<MapMarker> m = await markerdb.getAllMarker();
-    //_posts = posts;
     print('');
     print('Markers:');
     for (MapMarker map in m){
       print(map);
     }
+  }
+
+  Future _retMarkers() async{
+    List<MapMarker> m = await markerdb.getAllMarker();
+    mapMarkers = m;
   }
 
   Future getMarkers() async{
@@ -103,18 +107,14 @@ class MapMainScreen extends State<MyHomePage> {
   }
 
   Widget _MapOutput(BuildContext context){
-    var mapMarkers = [
-      MapMarker(username:"devtest01",latitude:43.9456,longitude:-78.8968,rating:2)
-      // MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
-      // MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4
-    ];
+    _retMarkers();
 
     _notifications.init();
 
     return Scaffold(
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 33, 32, 32),
-          title: const Text('Location Rating'),
+          title: Text(FlutterI18n.translate(context, "map.title")),
           actions: [
             IconButton(
                 onPressed: (){
