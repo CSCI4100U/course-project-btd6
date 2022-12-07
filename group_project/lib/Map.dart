@@ -31,15 +31,16 @@ class MapMainScreen extends State<MyHomePage> {
 
   // vairiables for notification
   String? notifTitle = "Location Rating";
-  LatLng? notifAddress = MapMarker().location;
-  Int? notifRating = MapMarker().rating as Int?;
+  // LatLng? notifAddress = MapMarker().location;
+  // Int? notifRating = MapMarker().rating as Int?;
   String? notifPayload = "This is the payload xd";
 
   @override
   void initState(){
-    Acc dev = new Acc(username: 'dev_admin', color: 'red', password: 'e', email: 'dev_email@gmail.com');
-    local.createAcc(dev);
-    _listAccs();
+    print("made it to map.dart");
+    // Acc dev = new Acc(username: 'dev_admin', color: 'red', password: 'e', email: 'dev_email@gmail.com');
+    // local.createAcc(dev);
+    // _listAccs();
   }
 
   Future _listAccs() async{
@@ -76,7 +77,10 @@ class MapMainScreen extends State<MyHomePage> {
   }
 
   Widget _MapOutput(BuildContext context){
-    var mapMarkers = MapMarker().mapMarkers;
+    var mapMarkers = [
+      MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
+      MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -293,7 +297,9 @@ class MapMainScreen extends State<MyHomePage> {
       ),
     );
 
-    return _getMarkers(context);
+    print("test");
+
+    return _MapOutput(context);
 
   }
 

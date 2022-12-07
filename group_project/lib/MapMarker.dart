@@ -16,9 +16,9 @@ class MapMarker {
     this.rating = map['Rating'];
   }
 
-  final mapMarkers = [
-    MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
-    MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4),
-  ];
+  // final mapMarkers = [
+  //   MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 3),
+  //   MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4),
+  // ];
 
 }
