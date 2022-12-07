@@ -4,7 +4,10 @@
     "login": "Conectar",
     "about": "Sobre Nosotros",
     "english": "Inglés",
-    "spanish": "Español"
+    "spanish": "Español",
+    "applicationName": "Diálogos y Navegación",
+    "applicationVersion": "Versión 0.1.1",
+    "copyright": "Derechos de Autor 2020 - Alguna Persona"
   },
   "login": {
     "username": "Usuario",
@@ -14,5 +17,12 @@
   },
   "map": {
     "title": "Calificación de Ubicación"
+  },
+  "account": {
+    "title": "Su Cuenta",
+    "nameHint": "Nombre de Usuario",
+    "emailHint": "Email",
+    "passwordHint": "Contraseña",
+    "done": "Finalizar"
   }
 }

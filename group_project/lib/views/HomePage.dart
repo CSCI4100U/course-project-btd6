@@ -330,11 +330,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
     showAboutDialog(
       context: context,
       applicationIcon: Icon(Icons.adb, size: 50,),
-      applicationName: 'Rate My Location',
-      applicationVersion: 'Version 1.0.0',
+      applicationName: FlutterI18n.translate(context, "homepage.applicationName"),
+      applicationVersion: FlutterI18n.translate(context, "homepage.applicationVersion"),
       children: [
-        Text('Rate My Location'),
-        Text('Copyright 2022 - BTD6'),
+        Text(FlutterI18n.translate(context, "homepage.applicationName")),
+        Text(FlutterI18n.translate(context, "homepage.copyright")),
       ],
     );
   }

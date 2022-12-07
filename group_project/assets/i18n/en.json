@@ -4,7 +4,10 @@
     "login": "Login",
     "about": "About Us",
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Spanish",
+    "applicationName": "Dialogs and Navigation",
+    "applicationVersion": "Version 0.1.1",
+    "copyright": "Copyright 2020 - Some Person"
   },
   "login": {
     "username": "Username",
@@ -14,5 +17,12 @@
   },
   "map": {
     "title": "Location Rating"
+  },
+  "account": {
+    "title": "Your Account",
+    "nameHint": "Username",
+    "emailHint": "Email",
+    "passwordHint": "Password",
+    "done": "Done"
   }
 }
