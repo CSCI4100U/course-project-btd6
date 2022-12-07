@@ -75,7 +75,7 @@ class AddRating extends StatelessWidget {
                 Navigator.pop(context, 5);
                 _notifications.sendNotifNow(
                     "Rate My Location",
-                    "You gave this location a 5 star rating!",
+                    "You gave this location a 5 star rating! WOW!",
                     "Payload"
                 );
               },
