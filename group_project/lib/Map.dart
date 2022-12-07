@@ -127,10 +127,13 @@ class MapMainScreen extends State<MyHomePage> {
                 icon: const Icon(Icons.insert_chart, color: Colors.white,)
             ),
             IconButton(
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(
+                onPressed: () async {
+                  var r = await Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => AddRating(),
                   ));
+                  Position temp = await Geolocator.getCurrentPosition();
+                  MapMarker insert = MapMarker(username: user, latitude: temp.latitude, longitude: temp.longitude, rating: r);
+                  markerdb.createMarker(insert);
                 },
                 icon: const Icon(Icons.add, color: Colors.white,)
             ),
