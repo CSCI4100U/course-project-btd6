@@ -28,13 +28,9 @@ class _LoginPageState extends State<LoginPage> {
   void initState(){
     setState(() {
       const oneSecond = const Duration(seconds: 1);
-      new Timer.periodic(oneSecond, (Timer t) => setState(() {
-        if(islogin == true){
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => MyHomePage(title: "map", user: _user)
-          ));
-        }
-      }));
+      // new Timer.periodic(oneSecond, (Timer t) => setState(() {
+      //
+      // }));
     });
   }
 
@@ -83,7 +79,11 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () {
                   queryLocal(_username, _password);
-
+                  if(islogin == true){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: "map", user: _user)
+                    ));
+                  }
 
 
 
