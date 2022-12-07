@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:group_project/settings_interface.dart';
 
 
-import 'ChangeColor.dart';
 import 'ChangeEmail.dart';
 import 'account.dart';
 
@@ -84,19 +83,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       children: [
                         Text('Email:    ${current!.email}   ',style: TextStyle(fontSize: 20,color: Colors.black)),
                         Icon(Icons.arrow_forward_ios_rounded, size: 15),
-                      ],
-                    )
-                ),
-                TextButton(
-                    onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ChangeColorPage()
-                      ));
-                      },
-                    child: Row(
-                      children: [
-                        Text('Color:    current_color   ',style: TextStyle(fontSize: 20,color: Colors.black)),
-                        Icon(Icons.arrow_forward_ios_rounded, size: 12,)
                       ],
                     )
                 ),
