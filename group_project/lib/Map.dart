@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -45,10 +46,11 @@ class MapMainScreen extends State<MyHomePage> {
 
   @override
   void initState(){
-    print("made it to map.dart");
+    print(user);
     // Acc dev = new Acc(username: 'dev_admin', color: 'red', password: 'e', email: 'dev_email@gmail.com');
     // local.createAcc(dev);
     // _listAccs();
+
   }
 
   Future _listAccs() async{

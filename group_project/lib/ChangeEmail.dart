@@ -1,17 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:group_project/settings_interface.dart';
+
+import 'account.dart';
+import 'account.dart';
 
 
 class ChangeEmailPage extends StatefulWidget {
-  const ChangeEmailPage({super.key});
+  const ChangeEmailPage({super.key, required this.user});
+
+  final String user;
 
   @override
-  State<ChangeEmailPage> createState() => _ChangeEmailPage();
+  State<ChangeEmailPage> createState() => _ChangeEmailPage(user: user);
 }
 
 class _ChangeEmailPage extends State<ChangeEmailPage> {
+
+  final String user;
   String? newEmail;
+  final local = SettingInterface();
+  Acc? current;
+
+  _ChangeEmailPage({
+    Key? key,
+    required this.user,
+  });
+
+  Future _getAcc() async{
+    List<Acc> acc = await local.getAllAccs();
+    for (Acc ac in acc){
+      if (ac.username == user){
+        print("Found ${ac.username}");
+        current = ac;
+      }
+    }
+  }
+
+  Future updateEmail() async{
+    await _getAcc();
+    print("next");
+    Acc temp = Acc(username: current?.username, password: current?.password, email: newEmail, color: current?.color);
+    local.updateAcc(temp);
+  }
 
   @override
   Widget build(BuildContext context){
@@ -38,6 +70,9 @@ class _ChangeEmailPage extends State<ChangeEmailPage> {
                   minimumSize: const Size.fromHeight(50),
                 ),
                   onPressed: (){
+
+                    updateEmail();
+
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text("Changed Email",
@@ -45,7 +80,6 @@ class _ChangeEmailPage extends State<ChangeEmailPage> {
                             )
                         ),
                     );
-                    Navigator.pop(context, newEmail);
                   },
                   child: Text('Confirm',style: TextStyle(fontSize: 20,color: Colors.black)),
               ),

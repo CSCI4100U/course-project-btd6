@@ -26,7 +26,7 @@ class SettingInterface{
     return result;
   }
 
-  Future<int> updatePost(Acc acc) async{
+  Future<int> updateAcc(Acc acc) async{
     final db = await DBUtils.init();
     return db.update(
       'local_db', //table you are inserting items into
@@ -36,7 +36,7 @@ class SettingInterface{
     );
   }
 
-  Future<int> deletePostWithUsername(String username) async{
+  Future<int> deleteAccWithUsername(String username) async{
     final db = await DBUtils.init();
     return db.delete(
       'local_db', //table you are inserting items into
