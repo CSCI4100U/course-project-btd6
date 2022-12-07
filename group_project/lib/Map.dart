@@ -142,10 +142,6 @@ class MapMainScreen extends State<MyHomePage> {
                 },
                 icon: const Icon(Icons.settings, color: Colors.white,)
             ),
-            IconButton(
-                onPressed: _notificationNow,
-                icon: const Icon(Icons.notification_add, color: Colors.white,)
-            ),
           ]
       ),
       body: Stack(
@@ -328,13 +324,6 @@ class MapMainScreen extends State<MyHomePage> {
 
     return _MapOutput(context);
 
-  }
-
-  void _notificationNow() async{
-    _notifications.sendNotifNow(
-        "Rate My Location",
-        "You rated $notifAddress: $notifRating stars!",
-        "Payload");
   }
 
 // Future getGrades() async{
