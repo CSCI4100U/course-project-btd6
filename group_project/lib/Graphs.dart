@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'switchGraph.dart';
-import 'HorizontalBarGraph.dart';
 import 'MapMarker.dart';
-import 'VerticalBarGraph.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+
 
 class Charts extends StatefulWidget {
   Charts({Key? key, required this.posts}) : super(key: key);
@@ -13,43 +13,40 @@ class Charts extends StatefulWidget {
   @override
   State<Charts> createState() => _ChartState();
 }
-final List<MapMarker> chartData = [];
+
 class _ChartState extends State<Charts> {
   late List<MapMarker> _chartData;
 
   @override
   void initState() {
-    _chartData = GraphData();
+    _chartData = widget.posts!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    List<Layout> options = [
-      Layout(name: "Vertical Bar", icon: Icon(Icons.view_column),
-          builder: barGraphVertical),
-      Layout(name: "Horizontal Bar", icon: Icon(Icons.reorder),
-          builder: barGraphHorizontal),
-    ];
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Locations Highest Score", style: TextStyle(color: Colors.white),),
 
-
-    return DefaultTabController(length: options.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Graphs', style: TextStyle(color: Colors.white),),
-            bottom: switchGraph(options),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(15),
+          child: Scaffold(
+            body: SfCartesianChart(
+              series: <ChartSeries>[
+                ColumnSeries<MapMarker, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (MapMarker gdp, _) => gdp.username,
+                  yValueMapper: (MapMarker gdp, _) => gdp.rating,
+                ),
+              ],
+              primaryXAxis: CategoryAxis(),
+            ),
           ),
-          body: buildTabBarView(options),
 
         )
     );
-  }
-  List<MapMarker> GraphData() {
-
-    for (MapMarker data in widget.posts!) {
-      chartData.add(data);
-    }
-    return chartData;
   }
 }

@@ -10,6 +10,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:group_project/views/HomePageDemo.dart';
 
+import 'DataTable.dart';
 import 'SettingsPage.dart';
 import 'settings_interface.dart';
 import 'MapMarker.dart';
@@ -66,21 +67,21 @@ class MapMainScreen extends State<MyHomePage> {
     return await FirebaseFirestore.instance.collection('Posts').get();
   }
 
-    //_notifications.init();
+  //_notifications.init();
 
   Widget _getMarkers(BuildContext context){
     return FutureBuilder(
-      future: getMarkers(),
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        print("snapshot $snapshot");
-        if (!snapshot.hasData){
-          print("Data is missing");
-          return CircularProgressIndicator();
-        }else{
-          print("found data");
-          return _MapOutput(context);
+        future: getMarkers(),
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          print("snapshot $snapshot");
+          if (!snapshot.hasData){
+            print("Data is missing");
+            return CircularProgressIndicator();
+          }else{
+            print("found data");
+            return _MapOutput(context);
+          }
         }
-      }
     );
   }
 
@@ -100,10 +101,8 @@ class MapMainScreen extends State<MyHomePage> {
             IconButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Charts(
-                        posts: mapMarkers?.toList(),
+                      builder: (context) => Data(Locations: mapMarkers),
                       )
-                  )
                   );
                 },
                 icon: Icon(Icons.insert_chart, color: Colors.white,)
@@ -320,18 +319,18 @@ class MapMainScreen extends State<MyHomePage> {
         "Payload");
   }
 
-  // Future getGrades() async{
-  //   print("Getting the grades...");
-  //   print(await FirebaseFirestore.instance.collection('Locations').get());
-  //   return await FirebaseFirestore.instance.collection('Locations').get();
-  // }
-  //
-  // Future _addToDb(data) async{
-  //   FirebaseFirestore.instance.collection('Locations').doc().set(data);
-  //   setState(() {
-  //     print("Added data: $data");
-  //   });
-  // }
+// Future getGrades() async{
+//   print("Getting the grades...");
+//   print(await FirebaseFirestore.instance.collection('Locations').get());
+//   return await FirebaseFirestore.instance.collection('Locations').get();
+// }
+//
+// Future _addToDb(data) async{
+//   FirebaseFirestore.instance.collection('Locations').doc().set(data);
+//   setState(() {
+//     print("Added data: $data");
+//   });
+// }
 
 
 }

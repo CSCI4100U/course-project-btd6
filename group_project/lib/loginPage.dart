@@ -67,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               TextField(
+                obscureText: true,
                 style: const TextStyle(fontSize: 30),
                 decoration: const InputDecoration(
                     label: Text("Password",),
