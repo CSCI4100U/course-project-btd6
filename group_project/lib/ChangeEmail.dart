@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group_project/settings_interface.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
-import 'account.dart';
+
 import 'account.dart';
 
 
@@ -49,7 +50,7 @@ class _ChangeEmailPage extends State<ChangeEmailPage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Settings")
+          title: Text(FlutterI18n.translate(context, "changeEmail.settings"))
       ),
       body: Container(
         padding: const EdgeInsets.all(15),
@@ -57,9 +58,9 @@ class _ChangeEmailPage extends State<ChangeEmailPage> {
             children: [
               TextField(
                 style: const TextStyle(fontSize: 30),
-                decoration: const InputDecoration(
-                    label: Text("New Email",),
-                    hintText: "Enter new email"
+                decoration: InputDecoration(
+                    label: Text(FlutterI18n.translate(context, "changeEmail.newEmail")),
+                    hintText: FlutterI18n.translate(context, "changeEmail.newEmailHint"),
                 ),
                 onChanged: (value){
                   newEmail = value;
@@ -74,14 +75,15 @@ class _ChangeEmailPage extends State<ChangeEmailPage> {
                     updateEmail();
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Changed Email",
+                         SnackBar(
+                            content: Text(FlutterI18n.translate(context, "changeEmail.changedEmail"),
                               style: TextStyle(fontSize: 15),
                             )
                         ),
                     );
                   },
-                  child: Text('Confirm',style: TextStyle(fontSize: 20,color: Colors.black)),
+                  child: Text(FlutterI18n.translate(context, "changeEmail.confirm"),
+                      style: TextStyle(fontSize: 20,color: Colors.black)),
               ),
             ]
         ),

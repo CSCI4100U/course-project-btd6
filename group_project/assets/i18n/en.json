@@ -24,5 +24,12 @@
     "emailHint": "Email",
     "passwordHint": "Password",
     "done": "Done"
+  },
+  "changeEmail": {
+    "settings": "Settings",
+    "newEmail": "New Email",
+    "newEmailHint": "Enter New Email",
+    "changedEmail": "Changed Email",
+    "confirm": "Confirm"
   }
 }
