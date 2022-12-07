@@ -12,6 +12,23 @@ Group members (3-5) (no Student IDs, only names and github usernames):
 
 5. Zachariah Friesen (sadtomat1999)
 
+Technical Report:
+https://docs.google.com/document/d/1znz_N0N0JUCxC6xFEcKuunx9fJ5aSVew3v0H9Dk6Euo/edit
+
+References:
+https://docs.google.com/document/d/1D-mIev_zakK8_kiK4EOCOUbarCbg7sjEJqK5rQisSJU/edit?usp=sharing
+
+Riley's Google Drive Link:
+https://drive.google.com/file/d/1vZFcVp-SX7xx95QUvKgKn_01vUnqJSUW/view?usp=share_link
+
+Jimmy's Google Drive Link:
+https://drive.google.com/drive/folders/1R1cr9zhN-nUSDQ1V0yJTaHNnsZDk-nY7?usp=share_link
+
+Jacob Google Drive Link:
+https://drive.google.com/file/d/19VKeT7EveK0su2F-U5ny0yJlkQIhNcpt/view?usp=share_link
+
+All group members contributed evenly to the project.  It might not show in the pushes due to the fact that some where having trouble with internet connection and GitHub software bugs. Also, code was transferred and update by different members.
+
 ## Overview
 This group project is designed for you to demonstrate the skills that you have learned in this course.  The final project that you submit in the last week of classes will be a completed mobile application.  Non-functional requirements, especially those associated with production-readiness, will be considered extremely important when marking this project.  You are expected to work in a group of three to five students when completing this project.  Students are not permitted to work alone on the project, as this eliminates one of the learning objectives of this assessment. 
 
