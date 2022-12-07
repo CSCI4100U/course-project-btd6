@@ -29,9 +29,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState(){
     setState(() {
       const oneSecond = Duration(seconds: 1);
-      // new Timer.periodic(oneSecond, (Timer t) => setState(() {
-      //
-      // }));
     });
   }
 
