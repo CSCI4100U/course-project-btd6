@@ -9,9 +9,9 @@ import 'Map.dart';
 
 class Notifications {
 
-  final channelID = "TestNotif";
-  final channelName = "Test Notification";
-  final channelDescription = "Test Notification Description";
+  final channelID = "Notification";
+  final channelName = "Rating Notification";
+  final channelDescription = "Notification sent when location is rated";
 
   var _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   NotificationDetails? _platformChannelInfo;
