@@ -39,8 +39,8 @@ class MapMainScreen extends State<MyHomePage> {
 
   // vairiables for notification
   String? notifTitle = "Location Rating";
-  // LatLng? notifAddress = MapMarker().location;
-  // Int? notifRating = MapMarker().rating as Int?;
+  LatLng? notifAddress = MapMarker().location;
+  Int? notifRating = MapMarker().rating as Int?;
   String? notifPayload = "This is the payload xd";
 
   @override
@@ -315,8 +315,8 @@ class MapMainScreen extends State<MyHomePage> {
 
   void _notificationNow() async{
     _notifications.sendNotifNow(
-        "Title",
-        "Body",
+        "Rate My Location",
+        "You rated $notifAddress: $notifRating stars!",
         "Payload");
   }
 
