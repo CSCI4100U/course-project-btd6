@@ -21,11 +21,19 @@ import 'package:latlong2/latlong.dart';
 
 
 class MapMainScreen extends State<MyHomePage> {
+  final String user;
+
+  MapMainScreen({
+    Key? key,
+    required this.user,
+  });
+
   final pageController = PageController();
   final local = SettingInterface();
 
   // calling notification class
   final _notifications = Notifications();
+
 
   int selectedIndex = 0;
 
@@ -107,7 +115,7 @@ class MapMainScreen extends State<MyHomePage> {
             IconButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => SettingsPage()
+                      builder: (context) => SettingsPage(user: user)
                   ));
                 },
                 icon: Icon(Icons.settings, color: Colors.white,)

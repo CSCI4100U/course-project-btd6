@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                   queryLocal(_username, _password);
                   if(islogin == true){
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: "map", user: _user)
+                        builder: (context) => MyHomePage(title: "map", user: _user!)
                     ));
                   }
 

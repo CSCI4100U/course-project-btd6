@@ -8,9 +8,9 @@ import 'ChangeEmail.dart';
 
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({super.key, required this.user});
 
-
+  final String user;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();

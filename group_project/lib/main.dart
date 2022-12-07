@@ -43,10 +43,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title, required this.user});
 
   final String title;
-  final String? user;
+  final String user;
 
   @override
-  State<MyHomePage> createState() => MapMainScreen();
+  State<MyHomePage> createState() => MapMainScreen(user: user);
 }
 
 
