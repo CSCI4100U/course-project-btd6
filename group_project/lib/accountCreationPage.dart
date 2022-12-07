@@ -43,6 +43,7 @@ class _accountPageState extends State<accountPage> {
                   },
                 ),
                 TextFormField(
+                  obscureText: true,
                   decoration: InputDecoration(hintText: 'Password'),
                   //store what they as password in personAccount
                   onChanged: (value){

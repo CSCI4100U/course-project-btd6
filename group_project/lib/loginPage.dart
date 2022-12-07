@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void initState(){
     setState(() {
-      const oneSecond = const Duration(seconds: 1);
+      const oneSecond = Duration(seconds: 1);
       // new Timer.periodic(oneSecond, (Timer t) => setState(() {
       //
       // }));
@@ -67,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               TextField(
+                obscureText: true,
                 style: const TextStyle(fontSize: 30),
                 decoration: const InputDecoration(
                     label: Text("Password",),
@@ -96,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => accountPage()
+                      builder: (context) => const accountPage()
                   ));
                 },
                 child: const Text('Create Account'),

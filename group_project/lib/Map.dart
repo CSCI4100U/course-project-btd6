@@ -11,6 +11,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:group_project/views/HomePageDemo.dart';
 
+import 'DataTable.dart';
 import 'SettingsPage.dart';
 import 'settings_interface.dart';
 import 'MapMarker.dart';
@@ -40,8 +41,8 @@ class MapMainScreen extends State<MyHomePage> {
 
   // vairiables for notification
   String? notifTitle = "Location Rating";
-  // LatLng? notifAddress = MapMarker().location;
-  // Int? notifRating = MapMarker().rating as Int?;
+  LatLng? notifAddress = MapMarker().location;
+  Int? notifRating = MapMarker().rating as Int?;
   String? notifPayload = "This is the payload xd";
 
   @override
@@ -68,21 +69,21 @@ class MapMainScreen extends State<MyHomePage> {
     return await FirebaseFirestore.instance.collection('Posts').get();
   }
 
-    //_notifications.init();
+  //_notifications.init();
 
   Widget _getMarkers(BuildContext context){
     return FutureBuilder(
-      future: getMarkers(),
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        print("snapshot $snapshot");
-        if (!snapshot.hasData){
-          print("Data is missing");
-          return CircularProgressIndicator();
-        }else{
-          print("found data");
-          return _MapOutput(context);
+        future: getMarkers(),
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          print("snapshot $snapshot");
+          if (!snapshot.hasData){
+            print("Data is missing");
+            return const CircularProgressIndicator();
+          }else{
+            print("found data");
+            return _MapOutput(context);
+          }
         }
-      }
     );
   }
 
@@ -102,19 +103,17 @@ class MapMainScreen extends State<MyHomePage> {
             IconButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Charts(
-                        posts: mapMarkers?.toList(),
+                      builder: (context) => Data(Locations: mapMarkers),
                       )
-                  )
                   );
                 },
-                icon: Icon(Icons.insert_chart, color: Colors.white,)
+                icon: const Icon(Icons.insert_chart, color: Colors.white,)
             ),
             IconButton(
                 onPressed: (){
 
                 },
-                icon: Icon(Icons.add, color: Colors.white,)
+                icon: const Icon(Icons.add, color: Colors.white,)
             ),
             IconButton(
                 onPressed: (){
@@ -122,11 +121,11 @@ class MapMainScreen extends State<MyHomePage> {
                       builder: (context) => SettingsPage(user: user)
                   ));
                 },
-                icon: Icon(Icons.settings, color: Colors.white,)
+                icon: const Icon(Icons.settings, color: Colors.white,)
             ),
             IconButton(
                 onPressed: _notificationNow,
-                icon: Icon(Icons.notification_add, color: Colors.white,)
+                icon: const Icon(Icons.notification_add, color: Colors.white,)
             ),
           ]
       ),
@@ -270,10 +269,7 @@ class MapMainScreen extends State<MyHomePage> {
                             padding: const EdgeInsets.all(4.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Icon(
-                                Icons.ac_unit,
-                                color: Colors.cyanAccent,
-                                size: 150,),
+                              child: const Icon(Icons.ac_unit, color: Colors.cyanAccent, size: 150,),
                             ),
                           ),
                         ),
@@ -317,23 +313,23 @@ class MapMainScreen extends State<MyHomePage> {
 
   void _notificationNow() async{
     _notifications.sendNotifNow(
-        "Title",
-        "Body",
+        "Rate My Location",
+        "You rated $notifAddress: $notifRating stars!",
         "Payload");
   }
 
-  // Future getGrades() async{
-  //   print("Getting the grades...");
-  //   print(await FirebaseFirestore.instance.collection('Locations').get());
-  //   return await FirebaseFirestore.instance.collection('Locations').get();
-  // }
-  //
-  // Future _addToDb(data) async{
-  //   FirebaseFirestore.instance.collection('Locations').doc().set(data);
-  //   setState(() {
-  //     print("Added data: $data");
-  //   });
-  // }
+// Future getGrades() async{
+//   print("Getting the grades...");
+//   print(await FirebaseFirestore.instance.collection('Locations').get());
+//   return await FirebaseFirestore.instance.collection('Locations').get();
+// }
+//
+// Future _addToDb(data) async{
+//   FirebaseFirestore.instance.collection('Locations').doc().set(data);
+//   setState(() {
+//     print("Added data: $data");
+//   });
+// }
 
 
 }

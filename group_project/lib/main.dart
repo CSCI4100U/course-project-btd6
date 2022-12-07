@@ -3,9 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:group_project/views/HomePage.dart';
 import 'Map.dart';
 
-
-import 'Map.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -48,5 +45,3 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => MapMainScreen(user: user);
 }
-
-
