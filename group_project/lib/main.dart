@@ -17,24 +17,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (context, snapshot){
-        if (snapshot.hasError){
-          print("Error connecting to Firebase");
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot){
+          if (snapshot.hasError){
+            print("Error connecting to Firebase");
+          }
+          if (snapshot.connectionState == ConnectionState.done){
+            print("Successfully connect to Firebase");
+            return MaterialApp(
+              title: "Group Project",
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              home: HomePageScreen(),
+            );
+          }else {
+            return CircularProgressIndicator();
+          }
         }
-        if (snapshot.connectionState == ConnectionState.done){
-          print("Successfully connect to Firebase");
-          return MaterialApp(
-            title: "Group Project",
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: HomePageScreen(),
-          );
-        }else {
-          return CircularProgressIndicator();
-        }
-      }
     );
   }
 }

@@ -90,6 +90,8 @@ class MapMainScreen extends State<MyHomePage> {
       MapMarker(username: "dev_admin_02", location: LatLng(43.9456, -78.8968), rating: 4),
     ];
 
+    _notifications.init();
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 33, 32, 32),

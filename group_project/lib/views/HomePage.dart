@@ -43,6 +43,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   late Animation<double> _animationTitle;
   late AnimationController _controllerButton;
   late Animation<double> _animationButton;
+  late AnimationController _controllerAboutUs;
+  late Animation<double> _animationAboutUs;
 
   @override
   void initState() {
@@ -95,8 +97,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       vsync: this,
     );
     _controllerButton = AnimationController(
-        duration: const Duration(seconds: 5),
-        vsync: this,
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    );
+    _controllerAboutUs = AnimationController(
+      duration: const Duration(seconds: 5),
+      vsync: this,
     );
 
     //animations
@@ -105,6 +111,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       end: 1.0,
     ).animate(_controllerTitle);
     _animationButton = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controllerButton);
+    _animationAboutUs = Tween(
       begin: 0.0,
       end: 1.0,
     ).animate(_controllerButton);
@@ -124,9 +134,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
     //call animation controllers
     _controllerTitle.forward();
     _controllerButton.forward();
+    _controllerAboutUs.forward();
     return Scaffold(
       body: Stack(
-          alignment: AlignmentDirectional.center,
+          alignment: AlignmentDirectional.bottomCenter,
           children: <Widget>[
             IntroSlider(
               key: UniqueKey(),
@@ -177,27 +188,69 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                 ),
               ),
             ),
-              DelayedDisplay(
-                delay: const Duration(seconds: 5),
-                  child: FadeTransition(
-                    opacity: _animationButton,
-                    child: SizedBox(
-                      width: 200.0,
-                      height: 50.0,
-                      child: ElevatedButton(
-                        onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                               builder: (context) => LoginPage())
-                           );
-                        },
-                        style: style,
-                        child: const Text('Login'),
-                      ),
+            Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0),
+              alignment: const Alignment(0.00, -0.1),
+
+              child: DelayedDisplay(
+                delay: const Duration(seconds: 4),
+                child: FadeTransition(
+                  opacity: _animationButton,
+                  child: SizedBox(
+                    width: 200.0,
+                    height: 50.0,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginPage())
+                        );
+                      },
+                      style: style,
+                      child: const Text('Login'),
                     ),
                   ),
+                ),
               ),
+            ),
+            Container(
+              color: const Color(0xFFFCE4EC).withOpacity(0),
+              height: 400,
+              width: 500,
+              alignment: const Alignment(0.00, -0.8),
+              //container for title
+              child: DelayedDisplay(
+                delay: const Duration(seconds: 5),
+                child: FadeTransition(
+                  opacity: _animationAboutUs,
+                  child: SizedBox(
+                    height: 50,
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _showAboutDialog(context);
+                      },
+                      style: style,
+                      child: const Text('About us'),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ]
       ),
     );
   }
+
+  void _showAboutDialog(BuildContext context) {
+    showAboutDialog(
+      context: context,
+      applicationName: 'Dialogs and Navigation',
+      applicationVersion: 'Version 0.1.1',
+      children: [
+        Text('Dialogs and Navigation'),
+        Text('Copyright 2020 - Some Person'),
+      ],
+    );
+  }
+
 }
